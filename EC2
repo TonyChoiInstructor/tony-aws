@@ -1,6 +1,10 @@
 
 Amazon Linux 2
 
+  - Meta 데이타 확인하기
+    curl http://169.254.169.254/1.0/meta-data/hostname
+    
+
   - Hostname 변경하기
     1.    sudo hostnamectl set-hostname web-01.tony-lab.net
     2. /etc/hosts 파일 변경
