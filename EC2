@@ -6,9 +6,21 @@ Amazon Linux 2
 
   - 리눅스 시간 확인하기
     date
-    
+
   - 시간동기화 확인
+    chronyc sources -v
     chronyc tracking
+
+  - 표준 시간대 변경
+    ls /usr/share/zoneinfo
+    ls /usr/share/zoneinfo/Asia   --> 서울 확인
+    sudo /etc/sysconfig/clock
+      ZONE="Asia/Seoul"
+      UTC=true
+
+  - 인스턴스가 현지 시간 정보를 참조할 때 표준 시간대 파일을 찾을 수 있도록 /etc/localtime과 표준 시간대 파일 사이에 심볼 링크를 생성합니다.
+     sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+     sudo reboot     
 
   - Hostname 변경하기
     1.    sudo hostnamectl set-hostname web-01.tony-lab.net
