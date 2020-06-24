@@ -1,0 +1,33 @@
+
+Amazon Linux 2
+
+  - Hostname 변경하기
+    1.    sudo hostnamectl set-hostname web-01.tony-lab.net
+    2. /etc/hosts 파일 변경
+          sudo vi /etc/hosts
+          127.0.0.1 web-01.tony-lab.net web-01 localhost4 localhost4.localdomain4
+          sudo reboot
+          
+  - EBS 연결하기
+    1. lsblk (볼륨 확인)
+       /dev/xvdf 확인, 루트 디바이스는 /dev/xvda임.
+       sudo file -s /dev/xvdf  로 파일 시스템 확인. data만 표시된다면, 디바이스에 파일시스템이 없는 것이며, 포맷이 필요함.
+    2. 포맷
+       sudo mkfs -t xfs /dev/xvdf 로 포맷.  만약 명령도구 없을 경우 mkfs.xfs 설치 --> sudo yum install xfsprogs
+    3. 마운트
+       sudo mkdir /tony-data
+       sudo mount /dev/xvdf /tony-data
+
+  - 재부팅 후 연결된 볼륨을 자동으로 탑재하는 방법
+    1. 파일 백업
+      sudo cp /etc/fstab /etc/fstab.origin
+    2. 디바이스의 UUID 찾기
+      sudo blkid
+    3./etc/fstab에 탑재하기 
+      sudo vi /etc/fstab
+      UUID=aebf131c-6957-451e-8d34-ec978d9581ae /data xfs default,nofail 0 2
+    
+  - 마운트 확인 및 언-마운트
+    sudo mount -a
+    sudo umount /data
+    
