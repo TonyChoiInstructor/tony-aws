@@ -55,6 +55,17 @@ Amazon Linux 2
   - 빈 파일 만들기
      sudo fallocate -l 2G tony_file
      
+  - 웹서버 만들기
+     sudo yum -y install httpd
+     sudo systemctl start httpd.service
+     sudo systemctl enable httpd.service
+     sudo bash -c 'echo "Welcome Tony's server: $HOSTNAME" > /var/www/html/test.html'
+
+  - 웹서버 삭제하기
+     yum -y remove httpd
+     
+  - 서비스 목록 확인하기
+     systemctl -t service list-unit-files
      
      
      
