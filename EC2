@@ -25,7 +25,7 @@ Amazon Linux 2
       sudo blkid
     3./etc/fstab에 탑재하기 
       sudo vi /etc/fstab
-      UUID=aebf131c-6957-451e-8d34-ec978d9581ae /data xfs default,nofail 0 2
+      UUID=aebf131c-6957-451e-8d34-ec978d9581ae /data xfs defaults,nofail 0 2
     
   - 마운트 확인 및 언-마운트
     sudo mount -a
