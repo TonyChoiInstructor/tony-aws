@@ -31,3 +31,9 @@ Amazon Linux 2
     sudo mount -a
     sudo umount /data
     
+  - 빈 파일 만들기
+     sudo fallocate -l 2G tony_file
+     
+     
+     
+     
