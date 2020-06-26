@@ -1,0 +1,16 @@
+
+  - NFS 설치
+    yum install nfs-utils
+    systemctl start nfs-server
+    systemctl enable nfs-server
+    mkdir /tony-efs
+    
+  - efs 마운트
+    sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0190a160.efs.ap-northeast-2.amazonaws.com:/ /tony-efs
+
+  - 보안 그룹 확인 및 fstab 등록
+  
+  - vi /etc/fstab
+    fs-0190a160.efs.ap-northeast-2.amazonaws.com:/  /tony-efs  nfs  sync  0 0
+    
+  
