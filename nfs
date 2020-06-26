@@ -35,7 +35,9 @@ Amazon Linux 2 AMI 기준
   
  - un-mount
    umount /nfs-storage
-   
+   umount -l /nfs-storage    (-l 또는 -f 옵션으로 지연된 또는 강제 언-마운트)
+
+
    만약 target is busy가 나온다면 해당 프로세스를 강제로 kill한 뒤 언마운트
    fuser -cu /nfs-storage  (누가 사용하고 있는지 확인)
    fuser -ck /nfs-storage  (사용하고 있는 프로세스 강제 Kill)
