@@ -75,4 +75,6 @@ Amazon Linux 2
  
     top 명령어로 확인 --> Shift + P 키를 누르면 CPU 점유율이 높은 순으로 정렬
     
-    
+   kill -9 PID(Process ID)   또는 killall 프로세스명
+   
+   
