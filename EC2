@@ -68,4 +68,9 @@ Amazon Linux 2
      systemctl -t service list-unit-files
      
      
-     
+  - CPU 부하생성
+    yes > /dev/null &   (백그라운드로 작업)
+    jobs   (작업 확인)
+    fg %1  (작업 1을 포그라운드로)
+ 
+    
