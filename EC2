@@ -34,7 +34,10 @@ Amazon Linux 2
        /dev/xvdf 확인, 루트 디바이스는 /dev/xvda임.
        sudo file -s /dev/xvdf  로 파일 시스템 확인. data만 표시된다면, 디바이스에 파일시스템이 없는 것이며, 포맷이 필요함.
     2. 포맷
+       mkfs.ext4 /dev/xvdf
+       
        sudo mkfs -t xfs /dev/xvdf 로 포맷.  만약 명령도구 없을 경우 mkfs.xfs 설치 --> sudo yum install xfsprogs
+    
     3. 마운트
        sudo mkdir /tony-data
        sudo mount /dev/xvdf /tony-data
