@@ -88,3 +88,14 @@ yum -y install httpd
 ifconfig eth0 | grep "inet " | awk -F'[: ]+' '{ print $3 }' > /var/www/html/index.html
 echo "<h1> Tony's Homepage - Server-01 </h1>" >> /var/www/html/index.html
 systemctl start httpd
+
+
+
+
+===========================================================================
+
+CentOS 시작시 명령어 수행 (https://blog.naver.com/PostView.nhn?blogId=kimdj217&logNo=221565160197)
+
+ vi /etc/rc.d/rc.local   파일에 작성
+ /root/test.sh
+ 
