@@ -86,8 +86,9 @@ Amazon Linux 2
 #!/bin/bash
 yum -y install httpd
 ifconfig eth0 | grep "inet " | awk -F'[: ]+' '{ print $3 }' > /var/www/html/index.html
-echo "<h1> Tony's Homepage - Server-01 </h1>" >> /var/www/html/index.html
+echo "<h1> Tony's Web Server </h1>" >> /var/www/html/index.html
 systemctl start httpd
+systemctl enable httpd
 
 
 
