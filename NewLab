@@ -2,3 +2,11 @@
 https://www.visual-paradigm.com/
 
 Meta-Data (https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/instancedata-data-categories.html)
+
+
+UserData (Windows)
+
+<powershell>
+# Install IIS
+Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+</powershell>
