@@ -4,6 +4,9 @@ Amazon Linux 2
   - Meta 데이타 확인하기
     curl http://169.254.169.254/1.0/meta-data/hostname
 
+  - Hostname 변경하기
+    sudo hostnamectl set-hostname web-01.localhost   (변경 후 리부팅)
+
   - 리눅스 시간 확인하기
     date
 
