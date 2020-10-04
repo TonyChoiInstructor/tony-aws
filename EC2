@@ -11,12 +11,21 @@ Amazon Linux 2
     https://m.blog.naver.com/PostView.nhn?blogId=hymne&logNo=221007971952&proxyReferer=https:%2F%2Fwww.google.com%2F
     https://itragdoll.tistory.com/23
 
+    vi /etc/chrony.conf
+       --->   server time.bora.net
     chronyc sources -v
     chronyc tracking
 
   - 표준 시간대 변경
     ls /usr/share/zoneinfo
     ls /usr/share/zoneinfo/Asia   --> 서울 확인
+    timedatectl set-timezone Asia/Seoul
+    timedatectl set-ntp true  ---> 동기화 실행
+    chronyc sources -v  --> 동기화 확인
+    
+    systemctl restart chronyd
+    systemctl enable chronyd
+    
     sudo /etc/sysconfig/clock
       ZONE="Asia/Seoul"
       UTC=true
