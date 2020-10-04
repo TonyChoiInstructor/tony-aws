@@ -16,7 +16,8 @@
   
   - vi /etc/fstab
     fs-0190a160:/ /tony-efs efs defaults,_netdev 0 0
-    
+    또는
+    172.31.35.162:/	  /tony	  nfs    defaults,_netdev     0  0
  
 https://docs.aws.amazon.com/ko_kr/efs/latest/ug/wt1-test.html
   
