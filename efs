@@ -14,6 +14,7 @@
 
 
 마운트 후에, 디렉토리의 소유자와 권한을 변경해준다.
+    (https://docs.aws.amazon.com/ko_kr/efs/latest/ug/accessing-fs-nfs-permissions.html)
     cd /tony
     chmod 777 .     또는 chown  user:group .       예를 들어    chown  ec2-user:ec2-user .
     
