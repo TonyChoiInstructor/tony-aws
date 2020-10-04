@@ -8,6 +8,8 @@ Amazon Linux 2
     date
 
   - 시간동기화 확인
+    https://m.blog.naver.com/PostView.nhn?blogId=hymne&logNo=221007971952&proxyReferer=https:%2F%2Fwww.google.com%2F
+
     chronyc sources -v
     chronyc tracking
 
