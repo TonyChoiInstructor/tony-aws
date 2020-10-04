@@ -1,4 +1,8 @@
 
+https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/example-bucket-policies.html
+
+https://awspolicygen.s3.amazonaws.com/policygen.html
+
 =============================================================================
 S3 Bucket Policy 예제
 =============================================================================
@@ -29,4 +33,22 @@ S3 Bucket Policy 예제
 121.152.73.185 만을 허용하겠다는 의미이다.
 =============================================================================
 
+{
+    "Version": "2012-10-17",
+    "Id": "토니S3정책",
+    "Statement": [
+        {
+            "Sid": "특정 IP만 허용",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::bucket-02.tony-lab.net/Terminator2.mp4",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "121.152.73.185"
+                }
+            }
+        }
+    ]
+}
 
