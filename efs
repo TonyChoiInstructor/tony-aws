@@ -26,7 +26,7 @@
   - vi /etc/fstab
     fs-0190a160:/ /tony-efs efs defaults,_netdev 0 0
     또는
-    172.31.35.162:/	  /tony	  nfs    defaults,_netdev     0  0
+    172.31.35.162:/	  /tony	  nfs    defaults,_netdev     0  0                (_netdev 옵션은 네트워크 서비스가 실행된 후 연결하라는 뜻이다)
  
 https://docs.aws.amazon.com/ko_kr/efs/latest/ug/wt1-test.html
   
