@@ -31,3 +31,59 @@
 https://docs.aws.amazon.com/ko_kr/efs/latest/ug/wt1-test.html
   
 sudo mount -t nfs -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.4.15:/   /tony
+
+
+
+
+
+
+2. fstab 일반
+
+fstab의 필드 구성 | LINUX 2005/05/26 03:51
+http://blog.naver.com/boxcj/140013292351
+/dev/hda1 /root ext3 default 1 2
+파일시스템명시 | 파일위치 | 종류 | 마운트 옵션 | 덤프인자 | 체크시퀸스 번호
+
+fstab은 총 6개의 필드로 구성되어 있다.
+
+1. 파일시스템 명시 : 블럭장치나 마운트될 파일시스템을 명시한다.
+- 파일시스템은 디바이스 명을 입력한다.
+
+2. 파일위치 : 마운트하는 지점을 명시한다.
+
+3. 종류: 파일시스템의 종류를 나타낸다
+- dos
+- ext2
+- ext3
+- nfs
+- swap
+-vfat (윈도우 일반..확인요?)
+- 등
+
+4. 마운트옵션: 파일시스템의 마운트 옵션을 나타낸다
+- default : 모든것
+- noquota : 쿼터 사용안함
+- nosuid : SUID접근 불가능
+- quota : 쿼터 사용
+- ro : 읽기 가능
+- rw : 읽기 쓰기 가능
+- suid: SUID접근 가능
+
+5. 덤프인자 : 파일시스템이 덤프될 필요가 있는지를 설정한다.
+- 0 : 덤프될 필요없음
+- 1 : 덤프 필요합
+
+6. 체크시퀸스 번호 : fsck에 의해 수행되는 무결성 검사를 위한 파일시스템 우선순위를 결정한다.
+- 0 : 체크 안함
+- 1 : 우선적으로 체크
+- 2 : 1번이 끝난 후 체크
+--------------------------------------------------------------------
+LABEL=/ / ext3 defaults 1 1
+none /dev/pts devpts gid=5,mode=620 0 0
+LABEL=/home /home ext3 defaults 1 2
+none /proc proc defaults 0 0
+none /dev/shm tmpfs defaults 0 0
+/dev/hda2 swap swap defaults 0 0
+/dev/cdrom /mnt/cdrom udf,iso9660 iocharset=cp949,noauto,user,exec,kudzu,ro 0 0
+
+출처: https://redkite777.tistory.com/entry/리눅스fstab-마운트-설정-관련 [All Days 무한도전]
