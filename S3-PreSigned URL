@@ -1,0 +1,8 @@
+
+파일에 대한 만료 시간을 만들어 제한 시간을 두도록 하는 것.
+
+   aws s3 presign s3://presignedurl-sample-bucket/test.txt --expires-in 120   
+   
+   (test.txt 파일에 대해 120초간 유효하도록 해준다. 120초 이후에는 만료됨 --> 명령어 후에는 URL을 제공해줌)
+   
+
