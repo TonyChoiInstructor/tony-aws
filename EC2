@@ -48,6 +48,11 @@ Amazon Linux 2
     1. lsblk (볼륨 확인)
        /dev/xvdf 확인, 루트 디바이스는 /dev/xvda임.
        sudo file -s /dev/xvdf  로 파일 시스템 확인. data만 표시된다면, 디바이스에 파일시스템이 없는 것이며, 포맷이 필요함.
+       df -Th   (파일 시스템 확인)
+       
+       마운트할 디스크의 파일시스템을 모른다면
+       blkid  로 확인
+       
     2. 포맷
        mkfs.ext4 /dev/xvdf
        
