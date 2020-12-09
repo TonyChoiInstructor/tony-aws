@@ -1,5 +1,9 @@
 
   - NFS 설치
+  
+    rpm -qa | grep nfs      (nfs 설치 되어있나 확인)
+    systemctl status nfs    (nfs server 확인)
+    
     yum install nfs-utils
     systemctl start nfs-server
     systemctl enable nfs-server
