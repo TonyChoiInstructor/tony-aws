@@ -3,3 +3,11 @@ EC2 리눅스 AMI2  프라이빗 키를 분실하였을때,
   https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/replacing-lost-key-pair.html
   
   
+마운트시 에러가 나면
+[root@ip-172-31-15-171 ~]# mount /dev/xvdf1 /tony-recovery/
+mount: /tony-recovery: wrong fs type, bad option, bad superblock on /dev/xvdf1, missing codepage or helper program, or other error.
+
+
+mount -t xfs -o nouuid /dev/xvdf1 /tony-recovery
+
+
