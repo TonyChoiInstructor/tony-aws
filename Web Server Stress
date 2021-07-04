@@ -2,3 +2,9 @@
 https://loader.io/   무료 사이트
 
 https://www.webhostingsecretrevealed.net/ko/blog/web-tools/load-testing-tools/     각종 사이트
+
+
+동시접속자 수 확인 하기
+  netstat -nap | grep :80 | grep ESTABLISHED | wc -l
+  
+  
