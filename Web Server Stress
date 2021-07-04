@@ -14,3 +14,4 @@ https://www.webhostingsecretrevealed.net/ko/blog/web-tools/load-testing-tools/  
 
 
 sudo wget https://github.com/TonyChoiInstructor/tony-aws/raw/master/tony-web.zip
+sudo unzip tony-web.zip -d /var/www/html/
