@@ -1,0 +1,9 @@
+
+
+#!/bin/bash
+yum install -y httpd
+wget -P /var/www/html/ https://s3.ap-northeast-2.amazonaws.com/s3.tony-lab.net/Folio.zip
+unzip /var/www/html/Folio.zip -d /var/www/html/
+systemctl start httpd
+systemctl enable httpd
+
