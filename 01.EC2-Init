@@ -6,6 +6,7 @@ Amazon Linux 2
 /etc/shadow   (사용자,암호)
 /etc/chrony.conf  (타임서버)
 
+
 1. 리눅스 시간 확인하기 & Hostname 확인하기 & IP 확인하기 & 커널 버전확인
   $ date
   $ hostname     
@@ -31,7 +32,18 @@ Amazon Linux 2
   $ grep /bin/bash /etc/passwd   -->  USERADD 를 통해 등록된 계정만 보기
   $ grep /bin/bash /etc/passwd | cut -f1 -d:    --> 아이디만 짤라서 보여줌
 
-6. 
+6. ec2-user
+
+  권한 https://recipes4dev.tistory.com/175
+
+  $ cd /home/ec2-user/
+  $ ls -al
+  drwx------ 2 ec2-user ec2-user  29 Aug 22 19:15 .ssh    --> .ssh폴더는 700  (ec2-user : ec2-user)
+  (user-group-other)  
+  $ cd /home/ec2-user/.ssh
+  $ ls -al
+  -rw------- 1 ec2-user ec2-user 386 Aug 22 19:15 authorized_keys   --> 600
+
 
 
 
