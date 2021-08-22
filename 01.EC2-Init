@@ -19,13 +19,19 @@ Amazon Linux 2
   $ ls /usr/share/zoneinfo
   $ ls /usr/share/zoneinfo/Asia   --> 서울 확인
   $ timedatectl set-timezone Asia/Seoul
-  $ timedatectl set-ntp true  ---> 동기화 실행
   $ chronyc sources -v  --> 동기화 확인
+  $ timedatectl    --> 시간 확인
 
 4. Hostname 변경하기
   $ hostnamectl set-hostname web-01.localhost
 
+5. 사용자 확인하기
+  $ cat /etc/passwd   --> 전체 확인
+  $ cut -f1 -d: /etc/passwd    --> 아이디만 짤라서 보여줌
+  $ grep /bin/bash /etc/passwd   -->  USERADD 를 통해 등록된 계정만 보기
+  $ grep /bin/bash /etc/passwd | cut -f1 -d:    --> 아이디만 짤라서 보여줌
 
+6. 
 
 
 
