@@ -1,1 +1,138 @@
 
+1. 리눅스 시간 확인하기 & Hostname 확인하기 & IP 확인하기 & 커널 버전확인
+  $ date
+  $ hostname
+  $ ifconfig
+  $ uname -r
+    
+2. 
+
+
+
+
+
+Amazon Linux 2
+
+  - Meta 데이타 확인하기
+    curl http://169.254.169.254/1.0/meta-data/hostname
+
+  - Hostname 변경하기
+    sudo hostnamectl set-hostname web-01.localhost   (변경 후 리부팅)
+
+  - 리눅스 시간 확인하기
+    date
+
+  - 시간동기화 확인
+    https://m.blog.naver.com/PostView.nhn?blogId=hymne&logNo=221007971952&proxyReferer=https:%2F%2Fwww.google.com%2F
+    https://itragdoll.tistory.com/23
+
+    vi /etc/chrony.conf
+       --->   server time.bora.net
+    chronyc sources -v
+    chronyc tracking
+
+  - 표준 시간대 변경
+    ls /usr/share/zoneinfo
+    ls /usr/share/zoneinfo/Asia   --> 서울 확인
+    timedatectl set-timezone Asia/Seoul
+    timedatectl set-ntp true  ---> 동기화 실행
+    chronyc sources -v  --> 동기화 확인
+    
+    systemctl restart chronyd
+    systemctl enable chronyd
+    
+    sudo /etc/sysconfig/clock
+      ZONE="Asia/Seoul"
+      UTC=true
+
+  - 인스턴스가 현지 시간 정보를 참조할 때 표준 시간대 파일을 찾을 수 있도록 /etc/localtime과 표준 시간대 파일 사이에 심볼 링크를 생성합니다.
+     sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+     sudo reboot     
+
+  - Hostname 변경하기
+    1.    sudo hostnamectl set-hostname web-01.tony-lab.net
+    2. /etc/hosts 파일 변경
+          sudo vi /etc/hosts
+          127.0.0.1 web-01.tony-lab.net web-01 localhost4 localhost4.localdomain4
+          sudo reboot
+          
+  - EBS 연결하기
+    1. lsblk (볼륨 확인)
+       /dev/xvdf 확인, 루트 디바이스는 /dev/xvda임.
+       sudo file -s /dev/xvdf  로 파일 시스템 확인. data만 표시된다면, 디바이스에 파일시스템이 없는 것이며, 포맷이 필요함.
+       df -Th   (파일 시스템 확인)
+       
+       마운트할 디스크의 파일시스템을 모른다면
+       blkid  로 확인
+       
+    2. 포맷
+       mkfs.ext4 /dev/xvdf
+       
+       sudo mkfs -t xfs /dev/xvdf 로 포맷.  만약 명령도구 없을 경우 mkfs.xfs 설치 --> sudo yum install xfsprogs
+    
+    3. 마운트
+       sudo mkdir /tony-data
+       sudo mount /dev/xvdf /tony-data
+
+  - 재부팅 후 연결된 볼륨을 자동으로 탑재하는 방법
+    1. 파일 백업
+      sudo cp /etc/fstab /etc/fstab.origin
+    2. 디바이스의 UUID 찾기
+      sudo blkid
+    3./etc/fstab에 탑재하기 
+      sudo vi /etc/fstab
+      UUID=aebf131c-6957-451e-8d34-ec978d9581ae /data xfs defaults,nofail 0 2
+    
+  - 마운트 확인 및 언-마운트
+    sudo mount -a
+    sudo umount /data
+    
+  - 빈 파일 만들기
+     sudo fallocate -l 2G tony_file
+     
+  - 웹서버 만들기
+     sudo yum -y install httpd
+     sudo systemctl start httpd.service
+     sudo systemctl enable httpd.service
+     sudo bash -c 'echo "Welcome Tony's server: $HOSTNAME" > /var/www/html/test.html'
+
+  - 웹서버 삭제하기
+     yum -y remove httpd
+     
+  - 서비스 목록 확인하기
+     systemctl -t service list-unit-files
+     
+     
+  - CPU 부하생성
+    yes > /dev/null &   (백그라운드로 작업)
+    jobs   (작업 확인)
+    fg %1  (작업 1을 포그라운드로)
+ 
+    top 명령어로 확인 --> Shift + P 키를 누르면 CPU 점유율이 높은 순으로 정렬
+    
+   kill -9 PID(Process ID)   또는 killall 프로세스명
+   
+   
+  - 사용자 데이터 - 시작스크립트
+  
+#!/bin/bash
+yum -y install httpd
+ifconfig eth0 | grep "inet " | awk -F'[: ]+' '{ print $3 }' > /var/www/html/index.html
+echo "<h1> Tony's Web Server </h1>" >> /var/www/html/index.html
+systemctl start httpd
+systemctl enable httpd
+
+
+UserData (Windows)
+
+<powershell>
+# Install IIS
+Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+</powershell>
+
+===========================================================================
+
+CentOS 시작시 명령어 수행 (https://blog.naver.com/PostView.nhn?blogId=kimdj217&logNo=221565160197)
+
+ vi /etc/rc.d/rc.local   파일에 작성
+ /root/test.sh
