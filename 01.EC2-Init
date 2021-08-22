@@ -32,7 +32,7 @@ Amazon Linux 2
   $ grep /bin/bash /etc/passwd   -->  USERADD 를 통해 등록된 계정만 보기
   $ grep /bin/bash /etc/passwd | cut -f1 -d:    --> 아이디만 짤라서 보여줌
 
-6. ec2-user
+6. ec2-user 확인
 
   권한 https://recipes4dev.tistory.com/175
 
@@ -43,6 +43,39 @@ Amazon Linux 2
   $ cd /home/ec2-user/.ssh
   $ ls -al
   -rw------- 1 ec2-user ec2-user 386 Aug 22 19:15 authorized_keys   --> 600
+
+7. tony 사용자 추가
+  $ useradd tony
+  $ passwd tony
+  $ sudo su - tony
+  $ ssh-keygen -t rsa
+  $ ls -al   (두 개의 파일이 만들어 진다.)
+  -rw------- 1 test test 1679 Aug 22 20:10 id_rsa   (프라이빗 키)
+  -rw-r--r-- 1 test test  403 Aug 22 20:10 id_rsa.pub   (퍼블릭 키)
+  
+  $ cat id_rsa.pub >> authorized_keys
+  $ chmod 600 authorized_keys
+  $ cat id_rsa    (프라이빗 키를 윈도우에서 복사한 후  tony-key.pem 으로 저장한다)
+                  (Puttygen 을 이용해서 tony-key.pem 을 ppk 형식으로 바꿀 수 있다.)
+                  
+  $ exit 
+  $ echo 'tony ALL=(ALL) ALL' >> /etc/sudoers
+
+      <참고>
+      -rw-rw-r--  1 egoing egoing  790 Feb 19 06:04 authorized_keys
+      -rw-------  1 egoing egoing 1675 Feb 18 18:51 id_rsa
+      -rw-r--r--  1 egoing egoing  395 Feb 18 18:51 id_rsa.pub
+      -rw-r--r--  1 egoing egoing 2216 Feb 19 18:34 known_hosts
+      authorized_keys 파일은 없을수도 있다. 
+
+8. tony 사용자로 접속하여 실행  (ec2-user 삭제)
+  $ sudo su -
+  $ userdel -r ec2-user
+  만약 지워지지 않는다면 (프로세스가 돌고 있어서 그렇다)
+  $ id -u ec2-user    (ec2-user의 UID 확인) 1000번이 출력됨
+  $ pkill -9 -U 1000   (1000번 사용자의 프로세스 모두 kill)
+  $ userdel -r ec2-user
+  
 
 
 
