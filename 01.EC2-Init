@@ -1,11 +1,31 @@
 
+Amazon Linux 2
+
+/etc/hosts   (호스트 네임)
+/etc/resolv.conf   (DNS 서버)
+/etc/shadow   (사용자,암호)
+/etc/chrony.conf  (타임서버)
+
 1. 리눅스 시간 확인하기 & Hostname 확인하기 & IP 확인하기 & 커널 버전확인
   $ date
-  $ hostname
+  $ hostname     
   $ ifconfig
   $ uname -r
     
-2. 
+2. 공인 IP 확인 (메타데이터 활용)
+  $ curl http://169.254.169.254/latest/meta-data/public-ipv4
+
+3. Timezone 변경하기
+  $ ls /usr/share/zoneinfo
+  $ ls /usr/share/zoneinfo/Asia   --> 서울 확인
+  $ timedatectl set-timezone Asia/Seoul
+  $ timedatectl set-ntp true  ---> 동기화 실행
+  $ chronyc sources -v  --> 동기화 확인
+
+4. Hostname 변경하기
+  $ hostnamectl set-hostname web-01.localhost
+
+
 
 
 
