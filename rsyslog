@@ -26,6 +26,6 @@ kern.none = don’t log any related kernel facility messages regardless of the p
 
 
 재시작
-  systemctl restart rsyslog.service
-  systemctl enable rsyslog.service
+  systemctl restart rsyslog
+  systemctl enable rsyslog
 
