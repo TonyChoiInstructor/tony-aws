@@ -12,7 +12,8 @@ Amazon Linux 2
   $ hostname     
   $ ifconfig
   $ uname -r
-    
+  $ last -f /var/log/btmp    (로그인 실패한 로그 보기)
+
 2. 공인 IP 확인 (메타데이터 활용)
   $ curl http://169.254.169.254/latest/meta-data/public-ipv4
 
