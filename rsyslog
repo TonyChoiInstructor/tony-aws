@@ -1,0 +1,31 @@
+https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server-in-centos-7/
+
+
+Syslog 확인
+  rsyslogd -v
+ 
+혹시 설치가 안되어져 있다면 설치
+  yum install rsyslog
+  
+설정 파일 수정
+  vi /etc/rsyslog.conf
+  
+   #*.* @@remote-host:514    (이 마지막 부분을 수정)
+   
+   *.*  @192.168.1.12:514     (모든 로그를 UDP 514번 포트를 사용해서 192.168.1.12 서버로 로그를 보내라)
+   
+   *.*  @@192.168.1.12:514    (모든 로그를 TCP 514번 포트를 사용해서 192.168.1.12 서버로 로그를 보내라)
+   
+kern.info = kernel logs with info priority and higher.
+kern.=info = only kernel messages with info priority.
+kern.info;kern.!err = only kernel messages with info, notice, and warning priorities.
+kern.debug;kern.!=warning = all kernel priorities except warning.
+kern.* = all kernel priorities messages.
+kern.none = don’t log any related kernel facility messages regardless of the priority.
+
+
+
+재시작
+  systemctl restart rsyslog.service
+  systemctl enable rsyslog.service
+
