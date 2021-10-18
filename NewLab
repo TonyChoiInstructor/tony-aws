@@ -4,13 +4,6 @@ https://www.visual-paradigm.com/
 Meta-Data (https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/instancedata-data-categories.html)
 
 
-UserData (Windows)
-
-<powershell>
-# Install IIS
-Install-WindowsFeature -Name Web-Server -IncludeManagementTools
-</powershell>
-
 =========================================================================================
 1. 부트스트랩에서 홈페이지 템플릿 다운 받아서
   --> https://bootstrapmade.com/folio-bootstrap-portfolio-template/download/
