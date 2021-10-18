@@ -34,8 +34,10 @@ Install-WindowsFeature -Name Web-Server -IncludeManagementTools
   cd Follio
   /home/ec2-user/Folio
   cp -rf * /var/www/html/.
+  chown apache:apache *
   rm -rf /home/ec2-user/Folio
   
+
   
   
   
