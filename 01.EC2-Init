@@ -199,7 +199,9 @@ UserData (Windows)
 
 <powershell>
 # Install IIS
-Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+Import-Module ServerManager
+Install-WindowsFeature Web-Server, web-server
+Install-WindowsFeature web-mgmt-tools
 </powershell>
 
 ===========================================================================
