@@ -20,14 +20,22 @@ Install-WindowsFeature -Name Web-Server -IncludeManagementTools
   sudo yum -y install httpd
   sudo systemctl start httpd
   sudo systemctl enable httpd  
+
+  vi /etc/httpd/conf/httpd.conf   (홈디렉토리도 확인)   홈디렉토리는 /var/www
   
-  vi /etc/httpd/conf/httpd.conf   (홈디렉토리도 확인)
+    https://kldp.org/node/74138    (vi 편집기 문자열 치환)
   
-  https://kldp.org/node/74138    (vi 편집기 문자열 치환)
-  
-  :%s@/var/www@/tony/www@c       ( /var/www 홈디렉토리를  /tony/www 디렉토리로 바꾸는 것을 하나씩 물어봐라)   (NFS 설치후 마운트 하면 한곳을 바라보도록)
-  
+  :%s@/var/www/@/tony/www@c       ( /var/www 홈디렉토리를  /tony/www 디렉토리로 바꾸는 것을 하나씩 물어봐라)   (NFS 설치후 마운트 하면 한곳을 바라보도록)
   
   
 4. 다운 받은 웹템플릿을 웹서버 디렉토리로 복사
-
+  cd /home/ec2-user
+  unzip Follio.zip
+  cd Follio
+  /home/ec2-user/Folio
+  cp -rf * /var/www/html/.
+  rm -rf /home/ec2-user/Folio
+  
+  
+  
+  
