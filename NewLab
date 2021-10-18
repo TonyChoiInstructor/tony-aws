@@ -10,3 +10,24 @@ UserData (Windows)
 # Install IIS
 Install-WindowsFeature -Name Web-Server -IncludeManagementTools
 </powershell>
+
+=========================================================================================
+1. 부트스트랩에서 홈페이지 템플릿 다운 받아서
+  --> https://bootstrapmade.com/folio-bootstrap-portfolio-template/download/
+2. PC에서 EC2로 WinSCP 이용해서 복사 (ec2-user 폴더에 복사할 수 밖에 없음)
+
+3. 웹서버 설치
+  sudo yum -y install httpd
+  sudo systemctl start httpd
+  sudo systemctl enable httpd  
+  
+  vi /etc/httpd/conf/httpd.conf   (홈디렉토리도 확인)
+  
+  https://kldp.org/node/74138    (vi 편집기 문자열 치환)
+  
+  :%s@/var/www@/tony/www@c       ( /var/www 홈디렉토리를  /tony/www 디렉토리로 바꾸는 것을 하나씩 물어봐라)   (NFS 설치후 마운트 하면 한곳을 바라보도록)
+  
+  
+  
+4. 다운 받은 웹템플릿을 웹서버 디렉토리로 복사
+
