@@ -3,3 +3,13 @@
     - ssh ec2-user@172.31.39.70 -i tony-key-01.pem  로 내부 호스트로 접속을 할 수는 있다.
     
   2. 
+  
+  
+  
+Linux-01 번 서버에서 SSH Keygen으로 공개키와 개인키 만들기
+  ssh-keygen -t rsa -b 2048 -C "Tony RSA Key"
+
+Linux-01 번 서버에서 Linux-02번으로 퍼블릭키 복사
+  sudo scp -i Linux-Key.pem /home/ec2-user/.ssh/id_rsa.pub ec2-user@192.168.2.248:tony_public.pub
+  
+  
