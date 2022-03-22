@@ -6,6 +6,8 @@ Amazon Linux 2
 /etc/shadow   (사용자,암호)
 /etc/chrony.conf  (타임서버)
 /etc/ssh/sshd_config  (SSH 설정 파일)
+https://whitewing4139.tistory.com/137  (NTP 관련해서 Depp Dive)
+
 
 1. 리눅스 시간 확인하기 & Hostname 확인하기 & IP 확인하기 & 커널 버전확인
   $ date
