@@ -9,6 +9,8 @@ Amazon Linux 2
 
 1. 리눅스 시간 확인하기 & Hostname 확인하기 & IP 확인하기 & 커널 버전확인
   $ date
+  $ systemctl status ntpd
+  $ systemctl status chronyd    (NTP 또는 Chrony를 사용하는지 확인)
   $ hostname     
   $ ifconfig
   $ uname -r
