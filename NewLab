@@ -21,6 +21,24 @@ Meta-Data (https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/instancedat
   :%s@/var/www/@/tony/www@c       ( /var/www 홈디렉토리를  /tony/www 디렉토리로 바꾸는 것을 하나씩 물어봐라)   (NFS 설치후 마운트 하면 한곳을 바라보도록)
   
   
+  1. 루트 디렉토리 변경하기
+
+# vi /etc/httpd/conf/httpd.conf
+
+DocumentRoot "/var/www/html"     /*원하는 경로로 바꿔준다*/
+
+ex) DocumentRoot "home/www"
+
+2. selinux 정책을 변경
+
+# chcon -R -t httpd_user_content_t /home/www
+
+또는
+
+# chcon -R -t httpd_sys_content_t /home/www
+
+
+  
 4. 다운 받은 웹템플릿을 웹서버 디렉토리로 복사
   cd /home/ec2-user
   unzip Follio.zip
