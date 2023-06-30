@@ -3,6 +3,27 @@ https://docs.aws.amazon.com/ko_kr/AmazonS3/latest/dev/example-bucket-policies.ht
 
 https://awspolicygen.s3.amazonaws.com/policygen.html
 
+
+=============================================================================
+S3 Bucket Policy 예제
+=============================================================================
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "토니S3정책",
+    "Statement": [
+        {
+            "Sid": "모두 허용",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::s3.tony-lab.net/*"
+        }
+    ]
+}
+
+
 =============================================================================
 S3 Bucket Policy 예제
 =============================================================================
