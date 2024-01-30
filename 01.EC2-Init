@@ -131,8 +131,27 @@ Amazon Linux 2
           sudo vi /etc/hosts
           127.0.0.1 web-01.tony-lab.net web-01 localhost4 localhost4.localdomain4
           sudo reboot
-          
-  - EBS 연결하기
+
+
+  - EBS 기존 볼륨 확장하기 (Linux)
+     https://docs.aws.amazon.com/ko_kr/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
+ 
+    1. sudo lsblk  (루트 볼륨과 파티션 확인)
+    
+    2. sudo growpart /dev/xvda1
+
+    3. sudo lsblk  (파티션 확장 확인)
+
+    4. df -hT  (파일 시스템 확인 및 용량 확인)
+
+    5. sudo xfs_growfs -d /      (XFS 파일 시스템 확장 명령어)
+    5. sudo resize2fs /dev/xvda1    (EXT4 파일 시스템 확장 명령어)
+
+    6. df -hT  (최종 용량 확인)
+
+
+
+  - EBS 연결하기 (신규 볼륨 추가시)
     1. lsblk (볼륨 확인)
        /dev/xvdf 확인, 루트 디바이스는 /dev/xvda임.
        sudo file -s /dev/xvdf  로 파일 시스템 확인. data만 표시된다면, 디바이스에 파일시스템이 없는 것이며, 포맷이 필요함.
